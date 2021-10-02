@@ -16,6 +16,7 @@ jobs:
         run: npm i && npm run check
   reset_questions:
     name: Reset Questions
+    environment: Actions
     runs-on: ubuntu-latest
     needs: check_answer
     steps:
@@ -34,11 +35,11 @@ jobs:
         uses: upinetree/labeler@fix-pull-request-param
         with:
           add-labels: "hacktoberfest-accepted"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.PUSH_TOKEN }}
           ignore-if-assigned: false
           ignore-if-labeled: true
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PUSH_TOKEN }}
           branch: main
